@@ -1,4 +1,4 @@
-#  Nexus
+#  Splicr
 An Instagram Clone build with React and TypeScript.
 
 
