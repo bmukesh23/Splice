@@ -1,5 +1,5 @@
-#  Splicr
-An Instagram Clone build with React and TypeScript.
+#  Splice
+An Instagram Clone built with React and TypeScript.
 
 
 ## 📦 Technologies
