@@ -260,7 +260,7 @@
   }
 
   .shad-input {
-    @apply h-12 bg-dark-4 border-none  !important;
+    @apply h-12 bg-dark-4 border-none !important;
   }
 
   .shad-textarea {
@@ -269,7 +269,7 @@
 
   /* Button */
   .shad-button_primary {
-    @apply bg-primary-500  !important;
+    @apply bg-primary-500 !important;
   }
 
   .shad-button_dark_4 {
