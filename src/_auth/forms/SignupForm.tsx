@@ -27,7 +27,6 @@ const SignupForm = () => {
   const onSubmit = async (values: z.infer<typeof SignupValidation>) => {
     const newUser = await createUserAccount(values); 
     console.log(newUser);
-    
   }
 
   return (
