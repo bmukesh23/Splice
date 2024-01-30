@@ -10,8 +10,10 @@ import {
 import { Input } from "@/components/ui/input"
 import { SignupValidation } from "@/lib/validation";
 import { createUserAccount } from "@/lib/appwrite/api";
+import { useToast } from "@/components/ui/use-toast";
 
 const SignupForm = () => {
+  const { toast } = useToast();
   const isLoading = false;
 
   const form = useForm<z.infer<typeof SignupValidation>>({
@@ -25,8 +27,11 @@ const SignupForm = () => {
   })
 
   const onSubmit = async (values: z.infer<typeof SignupValidation>) => {
-    const newUser = await createUserAccount(values); 
-    console.log(newUser);
+    const newUser = await createUserAccount(values);
+
+    if (!newUser) {
+      return toast({ title: "Sign up failed. Please try again" })
+    }
   }
 
   return (
