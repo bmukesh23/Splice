@@ -26,6 +26,8 @@ const SignupForm = () => {
     },
   })
 
+  // const { mutateAsync: createUserAccount, isLoading: isCreatingAccount } = useCreateUserAccountMutation();
+
   const onSubmit = async (values: z.infer<typeof SignupValidation>) => {
     const newUser = await createUserAccount(values);
 
@@ -98,7 +100,7 @@ const SignupForm = () => {
             ) : "Sign up"}
           </Button>
           <p className="text-small-regular text-light-2 text-center mt-2">
-            Have an account?
+            Already have an account?
             <Link to='/sign-in' className="text-primary-500 text-small-semibold ml-1">Log in</Link>
           </p>
         </form>
