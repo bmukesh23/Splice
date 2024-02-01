@@ -10,12 +10,13 @@ import {
 import { Input } from "@/components/ui/input"
 import { SignupValidation } from "@/lib/validation";
 import { useToast } from "@/components/ui/use-toast";
-import { useCreateUserAccount } from "@/lib/react-query/queriesAndMutation";
+import { useCreateUserAccount, useSignInAccount } from "@/lib/react-query/queriesAndMutation";
 
 const SignupForm = () => {
   const { toast } = useToast();
 
   const { mutateAsync: createUserAccount, isLoading: isCreatingUser } = useCreateUserAccount();
+  const { mutateAsync: signInAccount, isLoading: isSigningIn } = useSignInAccount();
 
   const form = useForm<z.infer<typeof SignupValidation>>({
     resolver: zodResolver(SignupValidation),
@@ -34,6 +35,14 @@ const SignupForm = () => {
       return toast({ title: "Sign up failed. Please try again" })
     }
 
+    const session = await signInAccount({
+      email: values.email,
+      password: values.password,
+    })
+
+    if(!session){
+      return toast({title: 'Sign in failed. Please try again.'})
+    }
   }
 
   return (
