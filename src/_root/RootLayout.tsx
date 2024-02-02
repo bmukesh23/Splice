@@ -1,6 +1,8 @@
 const RootLayout = () => {
   return (
-    <div>RootLayout</div>
+    <div>
+      RootLayout
+     </div>
   )
 }
 export default RootLayout
