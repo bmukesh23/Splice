@@ -277,6 +277,9 @@
   }
 
   .shad-button_ghost {
-    /* @apply flex gap-4 items-center justify-start hover: bg-transparent hover:text-white !important; */
+    @apply flex gap-4 items-center justify-start !important;
+  }
+  .shad-button_ghost:hover {
+    @apply bg-transparent text-white !important;
   }
 }
