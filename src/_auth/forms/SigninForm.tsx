@@ -10,6 +10,7 @@ import { SigninValidation } from "@/lib/validation";
 import { useToast } from "@/components/ui/use-toast";
 import { useSignInAccount } from "@/lib/react-query/queriesAndMutation";
 import { useUserContext } from "@/context/AuthContext";
+import Loader from "@/components/shared/Loader";
 
 const SigninForm = () => {
   const { toast } = useToast();
@@ -81,8 +82,7 @@ const SigninForm = () => {
           <Button type="submit" className="shad-button_primary">
             {isUserLoading ? (
               <div className="flex-center gap-2">
-                {/* <Loader/> */}
-                Loading...
+                <Loader /> Loading...
               </div>
             ) : "Sign in"}
           </Button>
