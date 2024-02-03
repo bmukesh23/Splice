@@ -221,7 +221,11 @@
   /* Left sidebar */
 
   .leftsidebar-link {
-    @apply rounded-lg base-medium hover: bg-primary-500 transition;
+    @apply rounded-lg base-medium;
+  }
+
+  .leftsidebar-link:hover{
+    @apply bg-primary-500 transition;
   }
 
   /* Post Card */
