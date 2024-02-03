@@ -14,13 +14,13 @@ const Topbar = () => {
   }, [isSuccess])
 
   return (
-    <section className="topbar">
-      <div className="flex-between py-1 px-2">
+    <section className="sticky top-0 z-50 md: hidden bg-dark-2 w-full">
+      <div className="flex-between py-2 px-4">
         <Link to='/'>
           <h2 className="h2-bold">splice</h2>
         </Link>
 
-        <div>
+        <div className="flex gap-4">
           <Button variant="ghost" className="shad-button_ghost" onClick={() => signOut()}>
             <img src="/assets/images/logout.svg" alt="logout" />
           </Button>
