@@ -1,5 +1,5 @@
 #  Splice
-🫧 A Social Media Web App built with React and TypeScript.
+🌀 A Social Media Web App built with React and TypeScript.
 
 
 ## 📦 Technologies
