@@ -14,7 +14,7 @@ const Topbar = () => {
   }, [isSuccess])
 
   return (
-    <section className="sticky top-0 z-50 md: hidden bg-dark-2 w-full">
+    <section className="sticky top-0 z-50 md:hidden bg-dark-2 w-full">
       <div className="flex-between py-2 px-4">
         <Link to='/'>
           <h2 className="h2-bold">splice</h2>

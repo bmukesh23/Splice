@@ -16,7 +16,7 @@ const LeftSidebar = () => {
   }, [isSuccess])
 
   return (
-    <nav className="md: flex px-6 py-10 flex-col justify-between min-w-[270px] bg-dark-2">
+    <nav className="hidden md:flex px-6 py-10 flex-col justify-between min-w-[270px] bg-dark-2">
       <div className="flex flex-col gap-11">
         <Link to='/' className="flex gap-3 items-center">
           <h2 className="h3-bold">Splice</h2>
