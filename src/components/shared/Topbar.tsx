@@ -3,8 +3,8 @@ import { Link, useNavigate } from "react-router-dom"
 import { Button } from "../ui/button";
 import { useEffect } from "react";
 import { useUserContext } from "@/context/AuthContext";
-import logoutSvg from '/assets/images/logout.svg'
-import profileSvg from '/assets/images/profile-placeholder.svg'
+import logoutSvg from '/assets/icons/logout.svg'
+import profileSvg from '/assets/icons/profile-placeholder.svg'
 
 const Topbar = () => {
   const { mutate: signOut, isSuccess } = useSignOutAccount();

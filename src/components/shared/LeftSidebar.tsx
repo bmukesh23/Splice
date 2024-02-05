@@ -5,7 +5,7 @@ import { useEffect } from "react";
 import { useUserContext } from "@/context/AuthContext";
 import { sidebarLinks } from "@/constants";
 import { INavLink } from "@/types";
-import logoutSvg from '/assets/images/logout.svg'
+import logoutSvg from '/assets/icons/logout.svg'
 
 const LeftSidebar = () => {
   const { pathname } = useLocation();
@@ -45,11 +45,11 @@ const LeftSidebar = () => {
                   to={link.route}
                   className="flex gap-4 items-center p-4"
                 >
-                  {/* <img
+                  <img
                     src={link.imgURL}
                     alt={link.label}
                     className={`group-hover:invert-white ${isActive && 'invert-white'}`}
-                  /> */}
+                  />
                   {link.label}
                 </NavLink>
               </li>
