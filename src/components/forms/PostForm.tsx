@@ -5,7 +5,6 @@ import { Button } from "@/components/ui/button"
 import {
   Form,
   FormControl,
-  FormDescription,
   FormField,
   FormItem,
   FormLabel,
@@ -13,13 +12,14 @@ import {
 } from "@/components/ui/form"
 import { Input } from "@/components/ui/input"
 import { Textarea } from "../ui/textarea"
+import FileUploader from "../shared/FileUploader"
 
 const formSchema = z.object({
   username: z.string().min(2).max(50),
 })
 
 const PostForm = () => {
-  // 1. Define your form.
+
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -27,10 +27,7 @@ const PostForm = () => {
     },
   })
 
-  // 2. Define a submit handler.
   function onSubmit(values: z.infer<typeof formSchema>) {
-    // Do something with the form values.
-    // ✅ This will be type-safe and validated.
     console.log(values)
   }
 
@@ -46,11 +43,53 @@ const PostForm = () => {
               <FormControl>
                 <Textarea className="h-36 bg-dark-3 rounded-xl border-none focus-visible:ring-1 focus-visible:ring-offset-1 ring-offset-light-3 custom-scrollbar" {...field} />
               </FormControl>
-              <FormMessage  className="shad-form_message"/>
+              <FormMessage className="shad-form_message" />
             </FormItem>
           )}
         />
-        <Button type="submit">Submit</Button>
+        <FormField
+          control={form.control}
+          name="file"
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel className="shad-form_label">Add Photos</FormLabel>
+              <FormControl>
+                <FileUploader />
+              </FormControl>
+              <FormMessage className="shad-form_message" />
+            </FormItem>
+          )}
+        />
+        <FormField
+          control={form.control}
+          name="location"
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel className="shad-form_label">Add Location</FormLabel>
+              <FormControl>
+                <Input type="text" className="shad-input" />
+              </FormControl>
+              <FormMessage className="shad-form_message" />
+            </FormItem>
+          )}
+        />
+        <FormField
+          control={form.control}
+          name="tags"
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel className="shad-form_label">Add Tags (seperated by comma " , ")</FormLabel>
+              <FormControl>
+                <Input type="text" className="shad-input" placeholder="Code, Trend, Nature" />
+              </FormControl>
+              <FormMessage className="shad-form_message" />
+            </FormItem>
+          )}
+        />
+        <div className="flex gap-4 items-center justify-end">
+          <Button type="button" className="shad-button_dark_4">Cancel</Button>
+          <Button type="submit" className="shad-button_primary whitespace-nowrap">Submit</Button>
+        </div>
       </form>
     </Form>
   )
