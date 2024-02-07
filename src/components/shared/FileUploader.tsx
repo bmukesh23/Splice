@@ -1,13 +1,14 @@
 import { useCallback, useState } from 'react'
 import { useDropzone } from 'react-dropzone'
 import { Button } from '../ui/button';
+import fileUploaderSvg from '/assets/icons/file-uploader.svg'
 
 const FileUploader = () => {
   const [file, setFile] = useState([]);
   const [fileUrl, setFileUrl] = useState('');
 
   const onDrop = useCallback(acceptedFiles => {
-      setFile(acceptedFiles);
+    setFile(acceptedFiles);
   }, [])
   const { getRootProps, getInputProps } = useDropzone({
     onDrop,
@@ -27,7 +28,7 @@ const FileUploader = () => {
         ) : (
           <div className='flex-center flex-col p-7 h-80 lg:h-[612px]'>
             <img
-              src='/public/assets/icons/add-post.svg'
+              src={fileUploaderSvg}
               width={96}
               height={77}
               alt='file-upload'
