@@ -191,11 +191,7 @@
   .file_uploader-label {
     @apply text-light-4 text-center small-regular w-full p-4 border-t border-t-dark-4;
   }
-
-  .file_uploader-box {
-    @apply flex-center flex-col p-7 h-80 lg: h-[612px];
-  }
-
+  
   /* Grid Post List */
   .grid-container {
     @apply w-full grid grid-cols-1 sm: grid-cols-2 md:grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-7 max-w-5xl;
