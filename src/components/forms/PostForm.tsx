@@ -25,7 +25,7 @@ type PostFormProps = {
 }
 
 const PostForm = ({ post }: PostFormProps) => {
-  const {mutauteAsync: createPost, isPending: isLoadingCreate } = useCreatePost();
+  const {mutateAsync: createPost, isPending: isLoadingCreate } = useCreatePost();
 
   const {user} = useUserContext();
   const {toast} = useToast();
@@ -116,7 +116,7 @@ const PostForm = ({ post }: PostFormProps) => {
         />
         <div className="flex gap-4 items-center justify-end">
           <Button type="button" className="shad-button_dark_4">Cancel</Button>
-          <Button type="submit" className="shad-button_primary whitespace-nowrap">Submit</Button>
+          <Button type="submit" className="shad-button_primary whitespace-nowrap">Post</Button>
         </div>
       </form>
     </Form>
