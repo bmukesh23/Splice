@@ -1,6 +1,6 @@
-import { INewUser } from "@/types";
+import { INewPost, INewUser } from "@/types";
 import { ID, Query } from "appwrite";
-import { account, appwriteConfig, avatars, databases } from "./config";
+import { account, appwriteConfig, avatars, databases, storage } from "./config";
 
 export const createUserAccount = async (user: INewUser) => {
     try {
@@ -28,7 +28,6 @@ export const createUserAccount = async (user: INewUser) => {
         return error;
     }
 }
-
 
 export const saveUserToDB = async (user: {
     accountId: string;
@@ -70,7 +69,7 @@ export const getCurrentUser = async () => {
             [Query.equal('accountId', currentAccount.$id)]
         );
 
-        if(!currentUser) throw Error;
+        if (!currentUser) throw Error;
 
         return currentUser.documents[0];
     } catch (error) {
@@ -82,6 +81,68 @@ export const signOutAccount = async () => {
     try {
         const session = await account.deleteSession("current");
         return session;
+    } catch (error) {
+        console.log(error);
+    }
+}
+
+export const createPost = async (post: INewPost) => {
+    try {
+        // upload image to storage
+        const uploadedFile = await uploadFile(post.file[0]);
+
+        if (!uploadedFile) throw Error;
+
+        // Get file url
+        const fileUrl = getFilePreview(uploadedFile.$id);
+
+        if (!fileUrl) {
+            deleteFile(uploadedFile.$id);
+            throw Error;
+        }
+
+        // Convert tags in an array
+        const tags = 
+    } catch (error) {
+        console.log(error);
+
+    }
+}
+
+export const uploadFile = async (file: File) => {
+    try {
+        const uploadedFile = await storage.createFile(
+            appwriteConfig.storageId,
+            ID.unique(),
+            file,
+        );
+        return uploadedFile;
+    } catch (error) {
+        console.log(error);
+    }
+}
+
+export const getFilePreview = async (fileId: string) => {
+    try {
+        const fileUrl = storage.getFilePreview(
+            appwriteConfig.storageId,
+            fileId,
+            2000,
+            2000,
+            "top",
+            100,
+        )
+
+        return fileUrl;
+    } catch (error) {
+        console.log(error);
+    }
+}
+
+export const deleteFile = async (fileId: string) => {
+    try {
+        await storage.deleteFile(appwriteConfig.storageId, fileId);
+        return { status: 'ok' }
     } catch (error) {
         console.log(error);
     }
