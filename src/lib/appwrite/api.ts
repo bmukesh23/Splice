@@ -198,7 +198,7 @@ export const likePost = async (postId: string, likesArray: string[]) => {
     }
 }
 
-export const savePost = async (postId: string, userId: string) => {
+export const savePost = async (userId: string, postId: string) => {
     try {
         const updatedPost = await databases.createDocument(
             appwriteConfig.databaseId,
@@ -208,17 +208,17 @@ export const savePost = async (postId: string, userId: string) => {
                 user: userId,
                 post: postId,
             }
-        )
+        );
 
         if (!updatedPost) throw Error;
 
         return updatedPost;
     } catch (error) {
-        console.log(error)
+        console.log(error);
     }
 }
 
-export const deletedSavedPost = async (savedRecordId: string) => {
+export const deleteSavedPost = async (savedRecordId: string) => {
     try {
         const statusCode = await databases.deleteDocument(
             appwriteConfig.databaseId,
@@ -228,7 +228,7 @@ export const deletedSavedPost = async (savedRecordId: string) => {
 
         if (!statusCode) throw Error;
 
-        return { status: 'ok' };
+        return { status: 'Ok' };
     } catch (error) {
         console.log(error);
     }
