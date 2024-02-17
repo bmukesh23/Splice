@@ -228,7 +228,7 @@ export const deleteSavedPost = async (savedRecordId: string) => {
 
         if (!statusCode) throw Error;
 
-        return { status: 'Ok' };
+        return { status: 'ok' };
     } catch (error) {
         console.log(error);
     }
