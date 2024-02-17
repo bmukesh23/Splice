@@ -2,9 +2,19 @@ import { useState } from 'react';
 import { Input } from '@/components/ui/input';
 import SearchIcon from '/assets/icons/search.svg';
 import FilterSvg from '/assets/icons/filter.svg';
+import SearchResults from '@/components/shared/SearchResults';
+import GridPostList from '@/components/shared/GridPostList';
+import { useSearchPosts } from '@/lib/react-query/queriesAndMutation';
 
 const Explore = () => {
   const [searchValue, setSearchValue] = useState('');
+
+  const { data: searchedPosts, isfetching: isSearchFetching} =useSearchPosts(searchValue);
+
+  // const posts = []; 
+
+  // const shouldShowSearchResults = searchValue !== '';
+  // const shouldShowPosts = !shouldShowSearchResults && posts.pages.every((item) => item.documents.length === 0)
 
   return (
     <div className="explore-container">
@@ -41,9 +51,17 @@ const Explore = () => {
         </div>
       </div>
 
-      <div className='flex flex-wrap gap-9 w-full max-w-5xl'>
-
-      </div>
+      {/* <div className='flex flex-wrap gap-9 w-full max-w-5xl'>
+        {shouldShowSearchResults ? (
+          <SearchResults
+          
+          />
+        ) : shouldShowPosts ? (
+          <p className='text-light-4 mt-10 text-center w-full'>End of the posts</p>
+        ) : posts.pages.map((item, index)=> (
+          <GridPostList key={`p age-${index}`} posts={item.documents}/>
+        ))}
+      </div> */}
     </div>
   )
 }
