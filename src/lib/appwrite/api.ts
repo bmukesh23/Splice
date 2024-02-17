@@ -269,7 +269,7 @@ export const updatePost = async (post: IUpdatePost) => {
                 throw Error;
             }
 
-            image = {...image, imageUrl: fileUrl, imageId: uploadFile.$id}
+            image = { ...image, imageUrl: fileUrl, imageId: uploadedFile.$id }
         }
 
         // Convert tags in an array
@@ -294,6 +294,22 @@ export const updatePost = async (post: IUpdatePost) => {
         }
 
         return updatePost;
+    } catch (error) {
+        console.log(error);
+    }
+}
+
+export const deletePost = async (postId: string, imageId: string) => {
+    if (!postId || !imageId) throw Error;
+
+    try {
+        await databases.deleteDocument(
+            appwriteConfig.databaseId,
+            appwriteConfig.postCollectionId,
+            postId,
+        )
+
+        return { status: 'ok' };
     } catch (error) {
         console.log(error);
     }
