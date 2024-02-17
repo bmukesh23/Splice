@@ -22,9 +22,10 @@ import { useNavigate } from "react-router-dom"
 
 type PostFormProps = {
   post?: Models.Document;
+  action: 'Create' | 'Update';
 }
 
-const PostForm = ({ post }: PostFormProps) => {
+const PostForm = ({ post, action }: PostFormProps) => {
   const {mutateAsync: createPost, isPending: isLoadingCreate } = useCreatePost();
 
   const {user} = useUserContext();
