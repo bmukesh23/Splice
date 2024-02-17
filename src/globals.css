@@ -120,7 +120,7 @@
 
   /* Explore */
   .explore-container {
-    @apply flex flex-col flex-1 items-center overflow-scroll py-10 px-5 md: p-14 custom-scrollbar;
+    @apply flex flex-col flex-1 items-center overflow-scroll py-10 px-5 md:p-14 custom-scrollbar;
   }
 
   .explore-inner_container {
@@ -128,7 +128,7 @@
   }
 
   .explore-search {
-    @apply h-12 bg-dark-4 border-none placeholder: text-light-4 focus-visible:ring-0 focus-visible:ring-offset-0 ring-offset-0 !important;
+    @apply h-12 bg-dark-4 border-none placeholder:text-light-4 focus-visible:ring-0 focus-visible:ring-offset-0 ring-offset-0 !important;
   }
 
   /* Home */
