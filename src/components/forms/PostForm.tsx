@@ -12,6 +12,7 @@ import { useCreatePost, useUpdatePost } from "@/lib/react-query/queriesAndMutati
 import { useUserContext } from "@/context/AuthContext"
 import { useToast } from "../ui/use-toast"
 import { useNavigate } from "react-router-dom"
+import Loader from "../shared/Loader"
 
 
 type PostFormProps = {
@@ -134,7 +135,7 @@ const PostForm = ({ post, action }: PostFormProps) => {
             className="shad-button_primary whitespace-nowrap"
             disabled={isLoadingCreate || isLoadingUpdate}
           >
-            {isLoadingCreate || isLoadingUpdate && 'Loading...'}
+            {isLoadingCreate || isLoadingUpdate && <Loader/>}
             {action} Post
           </Button>
         </div>
