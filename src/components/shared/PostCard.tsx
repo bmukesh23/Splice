@@ -53,7 +53,8 @@ const PostCard = ({ post }: PostCardProps) => {
                             <li key={`${tag}${index}`} className="text-light-3 small-regular">
                                 #{tag}
                             </li>
-                        ))}
+                        ))
+                        }
                     </ul>
                 </div>
 

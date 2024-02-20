@@ -354,7 +354,7 @@ export const searchPosts = async (searchTerm: string) => {
     }
 }
 
-export async function getUsers(limit?: number) {
+export const getUsers = async (limit?: number) => {
     const queries: any[] = [Query.orderDesc("$createdAt")];
 
     if (limit) {
