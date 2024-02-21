@@ -40,7 +40,7 @@ const LeftSidebar = () => {
           {sidebarLinks.map((link: INavLink) => {
             const isActive = pathname === link.route;
             return (
-              <li key={link.label} className={`leftsidebar-link group ${isActive && 'bg-primary-500'} `}>
+              <li key={link.label} className={`leftsidebar-link group ${isActive && 'bg-blue-600'} `}>
                 <NavLink
                   to={link.route}
                   className="flex gap-4 items-center p-4"
