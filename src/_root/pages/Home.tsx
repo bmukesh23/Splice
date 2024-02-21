@@ -1,5 +1,5 @@
 import { UserCard } from "@/components/shared";
-import Loader from "@/components/shared/Loader";
+import { Loader } from "@/components/shared";
 import PostCard from "@/components/shared/PostCard";
 import { useGetRecentPosts, useGetUsers } from "@/lib/react-query/queriesAndMutation";
 import { Models } from "appwrite";

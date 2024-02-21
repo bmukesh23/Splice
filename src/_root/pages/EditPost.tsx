@@ -2,7 +2,7 @@ import PostForm from '@/components/forms/PostForm';
 import addPost from '/assets/icons/add-post.svg';
 import { useParams } from 'react-router-dom';
 import { useGetPostById } from '@/lib/react-query/queriesAndMutation';
-import Loader from '@/components/shared/Loader';
+import { Loader } from '@/components/shared';
 
 
 const EditPost = () => {

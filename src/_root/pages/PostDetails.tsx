@@ -2,7 +2,7 @@ import { Button } from "@/components/ui/button";
 import { useUserContext } from "@/context/AuthContext";
 import { useGetPostById } from "@/lib/react-query/queriesAndMutation"
 import { formatDateString } from "@/lib/utils";
-import { Loader } from "lucide-react";
+import { Loader } from "@/components/shared";
 import { Link, useParams } from "react-router-dom";
 import EditBtn from '/assets/icons/edit.svg';
 import DeleteBtn from '/assets/icons/delete.svg';
