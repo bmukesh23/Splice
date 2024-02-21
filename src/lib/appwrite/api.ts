@@ -1,4 +1,4 @@
-import { INewPost, INewUser, IUpdatePost } from "@/types";
+import { INewPost, INewUser, IUpdatePost, IUpdateUser } from "@/types";
 import { ID, Query } from "appwrite";
 import { account, appwriteConfig, avatars, databases, storage } from "./config";
 
@@ -53,6 +53,15 @@ export const signInAccount = async (user: {
     try {
         const session = await account.createEmailSession(user.email, user.password);
         return session;
+    } catch (error) {
+        console.log(error);
+    }
+}
+
+export const getAccount = async () => {
+    try {
+        const currentAccount = await account.get();
+        return currentAccount;
     } catch (error) {
         console.log(error);
     }
@@ -315,7 +324,7 @@ export const deletePost = async (postId: string, imageId: string) => {
     }
 }
 
-export const getInfiinitePosts = async ({ pageParam }: { pageParam: number }) => {
+export const getInfinitePosts = async ({ pageParam }: { pageParam: number }) => {
     const queries: any[] = [Query.orderDesc('$updatedAt'), Query.limit(10)]
 
     if (pageParam) {
@@ -371,6 +380,93 @@ export const getUsers = async (limit?: number) => {
         if (!users) throw Error;
 
         return users;
+    } catch (error) {
+        console.log(error);
+    }
+}
+
+export const getUserById = async (userId: string) => {
+    try {
+        const user = await databases.getDocument(
+            appwriteConfig.databaseId,
+            appwriteConfig.userCollectionId,
+            userId
+        );
+
+        if (!user) throw Error;
+
+        return user;
+    } catch (error) {
+        console.log(error);
+    }
+}
+
+export const getUserPosts = async (userId?: string) => {
+    if (!userId) return;
+
+    try {
+        const post = await databases.listDocuments(
+            appwriteConfig.databaseId,
+            appwriteConfig.postCollectionId,
+            [Query.equal("creator", userId), Query.orderDesc("$createdAt")]
+        );
+
+        if (!post) throw Error;
+
+        return post;
+    } catch (error) {
+        console.log(error);
+    }
+}
+
+export const updateUser = async (user: IUpdateUser) => {
+    const hasFileToUpdate = user.file.length > 0;
+    try {
+        let image = {
+            imageUrl: user.imageUrl,
+            imageId: user.imageId,
+        };
+
+        if (hasFileToUpdate) {
+            const uploadedFile = await uploadFile(user.file[0]);
+            if (!uploadedFile) throw Error;
+
+            const fileUrl = getFilePreview(uploadedFile.$id);
+
+            if (!fileUrl) {
+                await deleteFile(uploadedFile.$id);
+                throw Error;
+            }
+
+            image = { ...image, imageUrl: fileUrl, imageId: uploadedFile.$id };
+        }
+
+        const updatedUser = await databases.updateDocument(
+            appwriteConfig.databaseId,
+            appwriteConfig.userCollectionId,
+            user.userId,
+            {
+                name: user.name,
+                bio: user.bio,
+                imageUrl: image.imageUrl,
+                imageId: image.imageId,
+            }
+        );
+
+        if (!updatedUser) {
+           
+            if (hasFileToUpdate) {
+                await deleteFile(image.imageId);
+            }
+            
+            throw Error;
+        }
+
+        if (user.imageId && hasFileToUpdate) {
+            await deleteFile(user.imageId);
+        }
+
+        return updatedUser;
     } catch (error) {
         console.log(error);
     }
