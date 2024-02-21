@@ -46,7 +46,7 @@
   }
 
   .body-bold {
-    @apply text-[18px] font-bold leading-[140%];
+    @apply text-[16px] font-bold leading-[140%];
   }
 
   .body-medium {
