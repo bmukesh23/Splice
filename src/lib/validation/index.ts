@@ -13,7 +13,7 @@ export const SigninValidation = z.object({
 })
 
 export const PostValidation = z.object({
-    caption:z.string().min(5).max(2200),
+    caption:z.string().min(2, {message: 'Too short'}).max(2200),
     file: z.custom<File[]>(),
     location: z.string().min(2, { message: "Location must be at least 2 characters." }).max(100),
     tags: z.string(),

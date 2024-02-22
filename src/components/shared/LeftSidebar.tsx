@@ -25,11 +25,11 @@ const LeftSidebar = () => {
           <img
             src="/assets/images/splicelogo.svg"
             alt="logo"
-            height={34}
-            width={34}
-            className="mt-0.5"
+            height={38}
+            width={38}
+            className="mt-1.5"
           />
-          <h1 className="h3-bold">splice</h1>
+          <h1 className="h1-bold">splice</h1>
         </div>
         </Link>
 

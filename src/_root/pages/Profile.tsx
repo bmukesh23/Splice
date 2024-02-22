@@ -55,12 +55,12 @@ const Profile = () => {
             </div>
 
             <div className="flex gap-8 mt-4 items-center justify-center xl:justify-start flex-wrap z-20">
-              <StatBlock value={currentUser.posts.length} label="Posts" />
-              <StatBlock value={4} label="Followers" />
-              <StatBlock value={4} label="Following" />
+              <StatBlock value={currentUser.posts.length} label="posts" />
+              <StatBlock value={4} label="followers" />
+              <StatBlock value={4} label="following" />
             </div>
 
-            <p className="small-medium md:base-medium text-center xl:text-left mt-7 max-w-screen-sm">
+            <p className="small-medium md:base-medium text-center xl:text-left mt-4 max-w-screen-sm">
               {currentUser.bio}
             </p>
           </div>

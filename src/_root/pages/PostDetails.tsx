@@ -1,9 +1,9 @@
 import { Button } from "@/components/ui/button";
 import { useUserContext } from "@/context/AuthContext";
-import { useGetPostById } from "@/lib/react-query/queriesAndMutation"
-import { formatDateString } from "@/lib/utils";
-import { Loader } from "@/components/shared";
-import { Link, useParams } from "react-router-dom";
+import { useDeletePost, useGetPostById, useGetUserPosts } from "@/lib/react-query/queriesAndMutation"
+import { multiFormatDateString } from "@/lib/utils";
+import { GridPostList, Loader } from "@/components/shared";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import EditBtn from '/assets/icons/edit.svg';
 import DeleteBtn from '/assets/icons/delete.svg';
 import PostStats from "@/components/shared/PostStats";
@@ -11,13 +11,39 @@ import PostStats from "@/components/shared/PostStats";
 const PostDetails = () => {
   const { id } = useParams();
   const { data: post, isPending } = useGetPostById(id || '');
+  const { data: userPosts, isPending: isUserPostLoading } = useGetUserPosts(
+    post?.creator.$id
+  );
+  const { mutate: deletePost } = useDeletePost();
+  const relatedPosts = userPosts?.documents.filter(
+    (userPost) => userPost.$id !== id
+  );
   const { user } = useUserContext();
+  const navigate = useNavigate();
 
-  const handleDeletePost = () => { }
+  const handleDeletePost = () => {
+    deletePost({ postId: id, imageId: post?.imageId });
+    navigate(-1);
+  }
 
   return (
     <div className="post_details-container">
-      {isPending ? <Loader /> : (
+      <div className="hidden md:flex max-w-5xl w-full">
+        <Button
+          onClick={() => navigate(-1)}
+          variant="ghost"
+          className="shad-button_ghost">
+          <img
+            src={"/assets/icons/back.svg"}
+            alt="back"
+            width={24}
+            height={24}
+          />
+          <p className="small-medium lg:base-medium">Back</p>
+        </Button>
+      </div>
+
+      {isPending || !post ? <Loader /> : (
         <div className="post_details-card">
           <img
             src={post?.imageUrl}
@@ -36,7 +62,7 @@ const PostDetails = () => {
                 <div className="flex flex-col">
                   <p className="base-medium lg:body-bold text-light-1">{post?.creator.name}</p>
                   <div className="flex-center gap-2 text-light-3">
-                    <p className="subtle-semibold lg:small-regular">{formatDateString(post?.$createdAt)}</p>
+                    <p className="subtle-semibold lg:small-regular"> {multiFormatDateString(post?.$createdAt)}</p>
                     -
                     <p className="subtle-semibold lg:small-regular">{post?.location}</p>
                   </div>
@@ -82,6 +108,20 @@ const PostDetails = () => {
           </div>
         </div>
       )}
+
+      <div className="w-full max-w-5xl">
+        <hr className="border w-full border-dark-4/80" />
+
+        <h3 className="body-bold md:h3-bold w-full my-10">
+          More Related Posts
+        </h3>
+        {isUserPostLoading || !relatedPosts ? (
+          <Loader />
+        ) : (
+          <GridPostList posts={relatedPosts} />
+        )}
+      </div>
+      
     </div>
   )
 }
