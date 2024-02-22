@@ -165,7 +165,7 @@ const UpdateProfile = () => {
               )}
             />
 
-            <div className="flex gap-4 items-center justify-end">
+            <div className="flex gap-4 items-center justify-center">
               <Button
                 type="button"
                 className="shad-button_dark_4"

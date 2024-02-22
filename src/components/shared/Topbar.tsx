@@ -19,7 +19,16 @@ const Topbar = () => {
     <section className="sticky top-0 z-50 md:hidden bg-dark-2 w-full">
       <div className="flex-between py-2 px-4">
         <Link to='/'>
-          <h2 className="h2-bold">splice</h2>
+        <div className="flex">
+          <img
+            src="/assets/images/splicelogo.svg"
+            alt="logo"
+            height={34}
+            width={34}
+            className="mt-0.5"
+          />
+          <h1 className="h2-bold">splice</h1>
+        </div>
         </Link>
 
         <div className="flex gap-4">

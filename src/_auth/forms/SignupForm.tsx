@@ -59,7 +59,16 @@ const SignupForm = () => {
   return (
     <Form {...form}>
       <div className="sm:w-420 flex-center flex-col">
-        <h1 className="h1-bold">splice</h1>
+      <div className="flex">
+          <img
+            src="/assets/images/splicelogo.svg"
+            alt="logo"
+            height={34}
+            width={34}
+            className="mt-1.5"
+          />
+          <h1 className="h1-bold">splice</h1>
+        </div>
         <h2 className="h3-bold md:h3-bold pt-4 sm:pt-4">Create a new account</h2>
         <p className="text-light-3 small-medium md:base-regular mt-2">Sign up to see photos and videos from your friends</p>
         <form onSubmit={form.handleSubmit(onSubmit)} className="flex flex-col gap-5 w-full mt-4">

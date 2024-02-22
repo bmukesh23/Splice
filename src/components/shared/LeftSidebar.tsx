@@ -21,7 +21,16 @@ const LeftSidebar = () => {
     <nav className="hidden md:flex px-6 py-10 flex-col justify-between min-w-[270px] bg-dark-2">
       <div className="flex flex-col gap-11">
         <Link to='/' className="flex gap-3 items-center">
-          <h2 className="h3-bold">Splice</h2>
+        <div className="flex">
+          <img
+            src="/assets/images/splicelogo.svg"
+            alt="logo"
+            height={34}
+            width={34}
+            className="mt-0.5"
+          />
+          <h1 className="h3-bold">splice</h1>
+        </div>
         </Link>
 
         <Link to={`/profile/${user.id}`} className="flex gap-3 items-center">
