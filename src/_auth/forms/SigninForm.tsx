@@ -16,11 +16,14 @@ const googleAuth = (e) => {
   e.preventDefault();
 
   try {
-    account.createOAuth2Session("google", "https://localhost:5173/", "https://localhost:5173/sign-in");
+    account.createOAuth2Session(
+      "google", 
+      "https://splicemedia.vercel.app/", 
+      "https://splicemedia.vercel.app/sign-in",
+    );
   } catch (e) {
     console.log(e.message);
   }
-  
 }
 
 const SigninForm = () => {
