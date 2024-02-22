@@ -9,6 +9,7 @@ import useDebounce from '@/hooks/useDebounce';
 
 type SearchResultsProps = {
   isSearchFetching: boolean;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   searchedPosts: any;
 }
 

@@ -325,6 +325,7 @@ export const deletePost = async (postId: string, imageId: string) => {
 }
 
 export const getInfinitePosts = async ({ pageParam }: { pageParam: number }) => {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const queries: any[] = [Query.orderDesc('$updatedAt'), Query.limit(10)]
 
     if (pageParam) {
@@ -364,6 +365,7 @@ export const searchPosts = async (searchTerm: string) => {
 }
 
 export const getUsers = async (limit?: number) => {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const queries: any[] = [Query.orderDesc("$createdAt")];
 
     if (limit) {
