@@ -10,6 +10,18 @@ import { useToast } from "@/components/ui/use-toast";
 import { useSignInAccount } from "@/lib/react-query/queriesAndMutation";
 import { useUserContext } from "@/context/AuthContext";
 import Loader from "@/components/shared/Loader";
+import { account } from "@/lib/appwrite/config";
+
+const googleAuth = (e) => {
+  e.preventDefault();
+
+  try {
+    account.createOAuth2Session("google", "https://splicemedia.vercel.app/", "https://splicemedia.vercel.app/sign-in");
+  } catch (e) {
+    console.log(e.message);
+  }
+  
+}
 
 const SigninForm = () => {
   const { toast } = useToast();
@@ -92,7 +104,15 @@ const SigninForm = () => {
               <Loader />
             ) : "Sign in"}
           </Button>
-          <p className="text-small-regular text-light-2 text-center mt-2">
+          <Button type="submit" onClick={(e) => googleAuth(e)} className="text-light-3">
+              <img
+                src="/assets/icons/google.svg"
+                alt="google"
+                className="mr-2"
+              />
+              Login with Google
+          </Button>
+          <p className="text-small-regular text-light-2 text-center mt-1">
             Don't have an account?
             <Link to='/sign-up' className="text-primary-500 text-small-semibold ml-1">Sign up</Link>
           </p>
