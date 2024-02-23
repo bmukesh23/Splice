@@ -20,7 +20,7 @@ import Loader from "@/components/shared/Loader";
 
 // const googleAuth = (e) => {
 //   e.preventDefault();
-//   account.createOAuth2Session('google', 'https://splicemedia.vercel.app/', 'https://splicemedia.vercel.app/sign-in');  
+//   account.createOAuth2Session('google', 'https://localhost:5173/', 'https://localhost:5173/sign-in');  
 // }
 
 const SigninForm = () => {
