@@ -1,7 +1,6 @@
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Link, useNavigate } from "react-router-dom";
-
 import { Button } from "@/components/ui/button";
 import { useForm } from "react-hook-form";
 import { Form, FormControl, FormField, FormItem, FormMessage } from "@/components/ui/form"
@@ -11,6 +10,7 @@ import { useToast } from "@/components/ui/use-toast";
 import { useCreateUserAccount, useSignInAccount } from "@/lib/react-query/queriesAndMutation";
 import { useUserContext } from "@/context/AuthContext";
 import Loader from "@/components/shared/Loader";
+// import { useAuth0 } from "@auth0/auth0-react";
 
 const SignupForm = () => {
   const { toast } = useToast();
@@ -19,6 +19,9 @@ const SignupForm = () => {
 
   const { mutateAsync: createUserAccount, isPending: isCreatingAccount } = useCreateUserAccount();
   const { mutateAsync: signInAccount} = useSignInAccount();
+
+  // const {user, loginWithRedirect} = useAuth0();
+  // console.log("Current User", user);
 
   const form = useForm<z.infer<typeof SignupValidation>>({
     resolver: zodResolver(SignupValidation),
@@ -31,6 +34,7 @@ const SignupForm = () => {
   })
 
   const onSubmit = async (values: z.infer<typeof SignupValidation>) => {
+
     const newUser = await createUserAccount(values);
 
     if (!newUser) {
@@ -120,6 +124,14 @@ const SignupForm = () => {
               </FormItem>
             )}
           />
+          {/* <Button type="submit" onClick={(e) => loginWithRedirect(e)} className="text-light-3">
+              <img
+                src="/assets/icons/auth0.svg"
+                alt="google"
+                className="mr-2"
+              />
+              Login with Auth0
+          </Button> */}
           <Button type="submit" className="shad-button_primary">
             {isCreatingAccount ? (
               <div className="flex-center gap-2">

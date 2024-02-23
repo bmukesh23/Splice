@@ -10,18 +10,6 @@ import { useToast } from "@/components/ui/use-toast";
 import { useSignInAccount } from "@/lib/react-query/queriesAndMutation";
 import { useUserContext } from "@/context/AuthContext";
 import Loader from "@/components/shared/Loader";
-// import { Client, Account } from "appwrite";
-
-// const client = new Client()
-//     .setEndpoint(import.meta.env.VITE_APPWRITE_URL)
-//     .setProject(import.meta.env.VITE_APPWRITE_PROJECT_ID);                 
-
-// const account = new Account(client);
-
-// const googleAuth = (e) => {
-//   e.preventDefault();
-//   account.createOAuth2Session('google', 'https://localhost:5173/', 'https://localhost:5173/sign-in');  
-// }
 
 const SigninForm = () => {
   const { toast } = useToast();
@@ -109,14 +97,6 @@ const SigninForm = () => {
               "Log in"
             )}
           </Button>
-          {/* <Button type="submit" onClick={(e) => googleAuth(e)} className="text-light-3">
-              <img
-                src="/assets/icons/google.svg"
-                alt="google"
-                className="mr-2"
-              />
-              Login with Google
-          </Button> */}
           <p className="text-small-regular text-light-2 text-center mt-1">
             Don't have an account?
             <Link to='/sign-up' className="text-blue-400 text-small-semibold ml-1">Sign up</Link>
