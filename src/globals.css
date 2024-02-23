@@ -269,7 +269,7 @@
 
   /* Button */
   .shad-button_primary {
-    @apply bg-blue-600 hover:bg-blue-600 text-light-1 flex gap-2 !important;
+    @apply bg-blue-600 hover:bg-blue-500 text-light-1 text-[16px] flex gap-2 !important;
   }
 
   .shad-button_dark_4 {

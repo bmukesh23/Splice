@@ -70,8 +70,8 @@ const SignupForm = () => {
           <h1 className="h1-bold">splice</h1>
         </div>
         <h2 className="h3-bold md:h3-bold pt-4 sm:pt-4">Create a new account</h2>
-        <p className="text-light-3 small-medium md:base-regular mt-2">Sign up to see photos and videos from your friends</p>
-        <form onSubmit={form.handleSubmit(onSubmit)} className="flex flex-col gap-5 w-full mt-4">
+        <p className="text-light-3 small-medium md:base-regular mt-2 text-center">Sign up to see photos and videos from your friends</p>
+        <form onSubmit={form.handleSubmit(onSubmit)} className="flex flex-col gap-5 mt-4 sm:w-80">
           <FormField
             control={form.control}
             name="email"
@@ -129,7 +129,7 @@ const SignupForm = () => {
           </Button>
           <p className="text-small-regular text-light-2 text-center mt-2">
             Already have an account?
-            <Link to='/sign-in' className="text-primary-500 text-small-semibold ml-1">Log in</Link>
+            <Link to='/sign-in' className="text-blue-400 text-small-semibold ml-1">Log in</Link>
           </p>
         </form>
       </div>

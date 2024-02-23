@@ -8,6 +8,7 @@ const Loader = () => {
                 alt="loader"
                 width={24}
                 height={24}
+                className="animate-spin"
             />
         </div>
     )

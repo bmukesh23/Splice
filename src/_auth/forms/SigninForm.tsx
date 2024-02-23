@@ -101,8 +101,13 @@ const SigninForm = () => {
           />
           <Button type="submit" className="shad-button_primary">
             {isUserLoading ? (
-              <Loader />
-            ) : "Sign in"}
+              <div className="flex-center gap-2 ">
+                {" "}
+                <Loader />
+              </div>
+            ) : (
+              "Log in"
+            )}
           </Button>
           {/* <Button type="submit" onClick={(e) => googleAuth(e)} className="text-light-3">
               <img
@@ -114,7 +119,7 @@ const SigninForm = () => {
           </Button> */}
           <p className="text-small-regular text-light-2 text-center mt-1">
             Don't have an account?
-            <Link to='/sign-up' className="text-primary-500 text-small-semibold ml-1">Sign up</Link>
+            <Link to='/sign-up' className="text-blue-400 text-small-semibold ml-1">Sign up</Link>
           </p>
         </form>
       </div>
