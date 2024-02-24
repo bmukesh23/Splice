@@ -33,6 +33,10 @@
     @apply text-[24px] font-bold leading-[140%] tracking-tighter;
   }
 
+  .h4-bold {
+    @apply text-[20px] font-bold leading-[140%] tracking-tighter;
+  }
+
   .base-semibold {
     @apply text-[16px] font-semibold leading-[140%] tracking-tighter;
   }
