@@ -1,4 +1,4 @@
-<img src="public/assets/images/Screenshot%202024-02-24%20002201.png"/>
+<img src="public/assets/images/splice.png"/>
 A Social Media Web App built with React and TypeScript and other technologies. This social media app is purposefully made for the web, like a web app, but it also works on mobile devices.
 
 ## 📦 Technologies
