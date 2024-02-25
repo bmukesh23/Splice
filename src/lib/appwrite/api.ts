@@ -14,6 +14,11 @@ export const createUserAccount = async (user: INewUser) => {
         if (!newAccount) throw Error;
 
         const avatarUrl = avatars.getInitials(user.name);
+        
+        if(newAccount){
+            const verification = await account.createVerification(user.email);
+        return verification;
+    }
 
         const newUser = await saveUserToDB({
             accountId: newAccount.$id,
@@ -47,7 +52,7 @@ export const saveUserToDB = async (user: {
 }
 
 export const signInAccount = async (user: {
-    email: string;
+    email: string,
     password: string
 }) => {
     try {
@@ -57,6 +62,42 @@ export const signInAccount = async (user: {
         console.log(error);
     }
 }
+
+export const userVerification = async (user: {email: string}) => {
+    try {
+        const verification = await account.createVerification(user.email);
+        return verification;
+    } catch (error) {
+        console.log(error);    
+    }
+}
+
+export const userConfirmation = async () => {
+    try {
+        const urlParams = new URLSearchParams(window.location.search);
+        const userId = urlParams.get('userId');
+        const secret = urlParams.get('secret');
+
+        if (!userId || !secret) {
+            throw new Error('userId or secret not found in the URL');
+        }
+
+        const promise = await account.updateVerification(userId, secret);
+        return promise;
+    } catch (error) {
+        console.log(error);    
+    }
+}
+
+// export const guestLogin = async () => {
+//     try{
+//         const promise = account.createAnonymousSession();
+//         return promise;
+//     }
+//     catch (error){
+//         console.log(error);       
+//     }
+// }
 
 export const getAccount = async () => {
     try {
@@ -70,7 +111,9 @@ export const getAccount = async () => {
 export const getCurrentUser = async () => {
     try {
         const currentAccount = await account.get();
-        if (!currentAccount) throw Error;
+        if (!currentAccount) {
+            return null;
+        }
 
         const currentUser = await databases.listDocuments(
             appwriteConfig.databaseId,
@@ -78,11 +121,14 @@ export const getCurrentUser = async () => {
             [Query.equal('accountId', currentAccount.$id)]
         );
 
-        if (!currentUser) throw Error;
+        if (!currentUser) {
+            return null;
+        }
 
         return currentUser.documents[0];
     } catch (error) {
         console.log(error);
+        return null;
     }
 }
 

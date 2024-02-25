@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { useQuery, useMutation, useQueryClient, useInfiniteQuery } from '@tanstack/react-query'
-import { createPost, createUserAccount, deletePost, deleteSavedPost, getCurrentUser, getInfinitePosts, getPostById, getRecentPosts, getUserById, getUserPosts, getUsers, likePost, savePost, searchPosts, signInAccount, signOutAccount, updatePost, updateUser } from '../appwrite/api'
+import { createPost, createUserAccount, deletePost, deleteSavedPost, getCurrentUser, getInfinitePosts, getPostById, getRecentPosts, getUserById, getUserPosts, getUsers, likePost, savePost, searchPosts, signInAccount, signOutAccount, updatePost, updateUser, userConfirmation, userVerification } from '../appwrite/api'
 import { INewPost, INewUser, IUpdatePost, IUpdateUser } from '@/types'
 import { QUERY_KEYS } from './queryKeys'
 
@@ -18,6 +18,24 @@ export const useSignInAccount = () => {
         }) => signInAccount(user),
     });
 }
+
+export const useUserVerification = () => {
+    return useMutation({
+        mutationFn: (user: {email: string}) => userVerification(user),
+    });
+}
+
+export const useUserConfirmation = () => {
+    return useMutation({
+        mutationFn: userConfirmation,
+    });
+}
+
+// export const useGuestLogin = () => {
+//     return useMutation({
+//         mutationFn: guestLogin
+//     });
+// }
 
 export const useSignOutAccount = () => {
     return useMutation({

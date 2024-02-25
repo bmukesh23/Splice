@@ -7,19 +7,21 @@ import { Form, FormControl, FormField, FormItem, FormMessage } from "@/component
 import { Input } from "@/components/ui/input"
 import { SignupValidation } from "@/lib/validation";
 import { useToast } from "@/components/ui/use-toast";
-import { useCreateUserAccount, useSignInAccount } from "@/lib/react-query/queriesAndMutation";
+import { useCreateUserAccount, useSignInAccount, useUserVerification } from "@/lib/react-query/queriesAndMutation";
 import { useUserContext } from "@/context/AuthContext";
 import Loader from "@/components/shared/Loader";
 
 
 const SignupForm = () => {
   const { toast } = useToast();
-  const { checkAuthUser } = useUserContext();
+  const { checkAuthUser, isLoading: isUserLoading } = useUserContext();
   const navigate = useNavigate();
 
-
+  // const {mutateAsync: guestLogin, isSuccess } = useGuestLogin();
   const { mutateAsync: createUserAccount, isPending: isCreatingAccount } = useCreateUserAccount();
-  const { mutateAsync: signInAccount} = useSignInAccount();
+  const { mutateAsync: signInAccount, isPending: isSigningInUser } = useSignInAccount();
+  const { mutateAsync: userVerification } = useUserVerification();
+  // const { mutateAsync: userConfirmation } = useUserConfirmation();
 
   const form = useForm<z.infer<typeof SignupValidation>>({
     resolver: zodResolver(SignupValidation),
@@ -37,6 +39,14 @@ const SignupForm = () => {
 
     if (!newUser) {
       return toast({ title: "Sign up failed. Please try again" })
+    }
+
+    const verification = await userVerification({
+      email: values.email,
+    })
+
+    if (!verification) {
+      return toast({ title: 'verification failed. Please try again.' })
     }
 
     const session = await signInAccount({
@@ -61,7 +71,7 @@ const SignupForm = () => {
   return (
     <Form {...form}>
       <div className="sm:w-420 flex-center flex-col">
-      <div className="flex">
+        <div className="flex">
           <img
             src="/assets/images/splicelogo.svg"
             alt="logo"
@@ -123,16 +133,16 @@ const SignupForm = () => {
             )}
           />
           <Button type="submit" className="shad-button_primary">
-            {isCreatingAccount ? (
+            {isCreatingAccount || isSigningInUser || isUserLoading ? (
               <div className="flex-center gap-2">
-                <Loader/>
+                <Loader />
               </div>
             ) : "Sign up"}
           </Button>
           <p className="text-small-regular text-light-2 text-center mt-2">
             Already have an account?
             <Link to='/sign-in' className="text-blue-400 text-small-semibold ml-1">Log in</Link>
-          </p> 
+          </p>
         </form>
       </div>
     </Form>
