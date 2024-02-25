@@ -60,7 +60,7 @@ export const signInAccount = async (user: {
 
 export const userVerification = async () => {
     try{
-        const promise = await account.createVerification("*.vercel.app");
+        const promise = await account.createVerification("https://splicemedia.vercel.app/sign-up");
         console.log('verification send');
         return promise;
     } catch (error){
