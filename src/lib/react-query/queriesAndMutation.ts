@@ -21,14 +21,14 @@ export const useSignInAccount = () => {
 
 export const useUserVerification = () => {
     return useMutation({
-        mutationFn: (user: {email: string}) => userVerification(user),
-    });
+        mutationFn: userVerification
+    })
 }
 
 export const useUserConfirmation = () => {
     return useMutation({
-        mutationFn: userConfirmation,
-    });
+        mutationFn: userConfirmation
+    })
 }
 
 // export const useGuestLogin = () => {

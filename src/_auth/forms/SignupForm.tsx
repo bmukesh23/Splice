@@ -7,7 +7,7 @@ import { Form, FormControl, FormField, FormItem, FormMessage } from "@/component
 import { Input } from "@/components/ui/input"
 import { SignupValidation } from "@/lib/validation";
 import { useToast } from "@/components/ui/use-toast";
-import { useCreateUserAccount, useSignInAccount, useUserVerification } from "@/lib/react-query/queriesAndMutation";
+import { useCreateUserAccount, useSignInAccount, useUserConfirmation, useUserVerification } from "@/lib/react-query/queriesAndMutation";
 import { useUserContext } from "@/context/AuthContext";
 import Loader from "@/components/shared/Loader";
 
@@ -20,8 +20,8 @@ const SignupForm = () => {
   // const {mutateAsync: guestLogin, isSuccess } = useGuestLogin();
   const { mutateAsync: createUserAccount, isPending: isCreatingAccount } = useCreateUserAccount();
   const { mutateAsync: signInAccount, isPending: isSigningInUser } = useSignInAccount();
-  const { mutateAsync: userVerification } = useUserVerification();
-  // const { mutateAsync: userConfirmation } = useUserConfirmation();
+  const  {mutateAsync: userVerification} = useUserVerification();
+  const {mutateAsync: userConfirmation } = useUserConfirmation();
 
   const form = useForm<z.infer<typeof SignupValidation>>({
     resolver: zodResolver(SignupValidation),
@@ -41,14 +41,6 @@ const SignupForm = () => {
       return toast({ title: "Sign up failed. Please try again" })
     }
 
-    const verification = await userVerification({
-      email: values.email,
-    })
-
-    if (!verification) {
-      return toast({ title: 'verification failed. Please try again.' })
-    }
-
     const session = await signInAccount({
       email: values.email,
       password: values.password,
@@ -56,6 +48,23 @@ const SignupForm = () => {
 
     if (!session) {
       return toast({ title: 'Sign in failed. Please try again.' })
+    }
+
+    const promise = await userVerification();
+    
+    if(!promise) {
+      return toast({ title: 'Verification failed. Please try again.' })
+    }
+
+    const confirmation = await userConfirmation();
+
+    if(confirmation){
+      console.log('user is verified');
+      navigate('/');
+    }
+
+    if(!confirmation) {
+      return toast({ title: 'confirmation failed. Please try again.' })
     }
 
     const isLoggedIn = await checkAuthUser();

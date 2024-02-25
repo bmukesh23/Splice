@@ -14,11 +14,6 @@ export const createUserAccount = async (user: INewUser) => {
         if (!newAccount) throw Error;
 
         const avatarUrl = avatars.getInitials(user.name);
-        
-        if(newAccount){
-            const verification = await account.createVerification(user.email);
-        return verification;
-    }
 
         const newUser = await saveUserToDB({
             accountId: newAccount.$id,
@@ -57,18 +52,19 @@ export const signInAccount = async (user: {
 }) => {
     try {
         const session = await account.createEmailSession(user.email, user.password);
-        return session;
+        return session;           
     } catch (error) {
         console.log(error);
     }
 }
 
-export const userVerification = async (user: {email: string}) => {
-    try {
-        const verification = await account.createVerification(user.email);
-        return verification;
-    } catch (error) {
-        console.log(error);    
+export const userVerification = async () => {
+    try{
+        const promise = await account.createVerification("https://splicemedia.vercel.app/");
+        console.log('verification send');
+        return promise;
+    } catch (error){
+        console.log(error);
     }
 }
 
@@ -78,14 +74,10 @@ export const userConfirmation = async () => {
         const userId = urlParams.get('userId');
         const secret = urlParams.get('secret');
 
-        if (!userId || !secret) {
-            throw new Error('userId or secret not found in the URL');
-        }
-
-        const promise = await account.updateVerification(userId, secret);
-        return promise;
+        const confirmation = account.updateVerification(userId, secret);
+        return confirmation;
     } catch (error) {
-        console.log(error);    
+        console.log(error);   
     }
 }
 
