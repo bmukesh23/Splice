@@ -14,7 +14,7 @@ A Social Media Web App built with React and TypeScript and other technologies. T
 
 Explore the possibilities with our app, Splice:
 
--**User Authentication**: By using Appwrite's email verification functionality for enhancing user authentication, it ensures that all user accounts are associated with valid and verified email addresses.
+- **User Authentication**: By using Appwrite's email verification functionality for enhancing user authentication, it ensures that all user accounts are associated with valid and verified email addresses.
 
 - **View Profiles**: Get to know yourself and others by viewing profile details effortlessly.
 
@@ -43,7 +43,7 @@ The most challenging aspect was determining backend on the appwrite because it i
 
 ## 💭 How Can It Be Improved?
 
-- **Comment and Share Features**: Enhance user engagement by enabling them to comment on posts and share them, just like on Instagram.
+- **Comment and Share Features**: Enhance user engagement by enabling them to comment on posts and share them.
   
 - **Mutual Following**: Foster connections between users by implementing mutual following capabilities.
   
