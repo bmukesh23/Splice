@@ -51,6 +51,9 @@ const SignupForm = () => {
     }
 
     const promise = await userVerification();
+    if(promise){
+      return toast({ title: 'Please check your email for verification.' })
+    }
     
     if(!promise) {
       return toast({ title: 'Verification failed. Please try again.' })
@@ -59,12 +62,11 @@ const SignupForm = () => {
     const confirmation = await userConfirmation();
 
     if(confirmation){
-      console.log('user is verified');
       navigate('/');
     }
 
     if(!confirmation) {
-      return toast({ title: 'confirmation failed. Please try again.' })
+      return toast({ title: 'confirmation failed. Please try again.' }); 
     }
 
     const isLoggedIn = await checkAuthUser();
