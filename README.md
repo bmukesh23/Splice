@@ -14,6 +14,8 @@ A Social Media Web App built with React and TypeScript and other technologies. T
 
 Explore the possibilities with our app, Splice:
 
+- **User Authentication**: By using Appwrite's email verification functionality for enhancing user authentication, it ensures that all user accounts are associated with valid and verified email addresses.
+
 - **View Profiles**: Get to know yourself and others by viewing profile details effortlessly.
 
 - **Post Your Moments**: Share your favorite moments with ease by uploading posts.
@@ -33,19 +35,15 @@ Explore the possibilities with our app, Splice:
 
 ## 📝 Process
 
-I started by jotting down in my notebook what features I wanted. I often use Instagram Web, so I tried to draw inspiration from that.
-
 Starting with setting up Appwrite, I then proceeded to implement authentication. Following this, I established routing, both public and private, and focused on designing the sidebar, top bar, and other essential components. From there, I developed pages such as the home feed, explore, and user directory, etc.
 
-Afterward, I delved into refining the finer details, such as implementing drag-and-drop functionality for images and files, enabling post saving, and incorporating profile customization options like changing the profile picture, name, and bio. Initially, I didn't have a specific design concept in mind; I built everything from scratch and gradually developed ideas regarding colors and styling.
+Afterward, I delved into refining the finer details, such as implementing drag-and-drop functionality for images and files, enabling post saving, and incorporating profile customization options like changing the profile picture, name, and bio.
 
-The most challenging aspect was determining the optimal data structure. One valuable skill I acquired during this process was setting up Appwrite, which was entirely new to me and is something I'll carry forward into future projects.
+The most challenging aspect was determining backend on the appwrite because it is new for me and it is a valuable skill I acquired during this process was setting up Appwrite, which was entirely new to me and is something I'll carry forward into future projects.
 
 ## 💭 How Can It Be Improved?
 
-- **Enable Google Authentication**: Allow users to sign in or sign up easily using Google authentication.
-  
-- **Comment and Share Features**: Enhance user engagement by enabling them to comment on posts and share them, just like on Instagram.
+- **Comment and Share Features**: Enhance user engagement by enabling them to comment on posts and share them.
   
 - **Mutual Following**: Foster connections between users by implementing mutual following capabilities.
   
